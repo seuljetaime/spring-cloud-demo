@@ -1,0 +1,6 @@
+rootProject.name = 'spring-cloud-demo'
+include 'eureka-server'
+include 'provider'
+include 'ribbon'
+include 'provider2'
+

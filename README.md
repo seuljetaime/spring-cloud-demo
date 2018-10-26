@@ -1,1 +1,15 @@
-# spring-cloud-demo
+# 顺序
+1. 启动eureka-server
+2. 查看网页`http://localhost:8761` 中的`Instances currently registered with Eureka`
+3. 启动provider 查看网页`http://localhost:8761` 中的Instance
+4. 启动provider2 查看网页`http://localhost:8761` 中的Instance
+5. 启动ribbon 查看网页`http://localhost:8761` 中的Instance
+6. 浏览器请求`http://localhost:8080/test` 会输出 `provider: echo 'Hello World'` 或 `provider2: echo 'Hello World'`
+
+**备注： 启动完provider、ribbon后立即请求ribbon的test，会发现无法找到instance，要等会**
+
+# eureka-server
+| Path             | Description  |
+|------------------|--------------|
+| /                | Home page (HTML UI) listing service registrations    |
+| /eureka/apps     | Raw registration metadata |
