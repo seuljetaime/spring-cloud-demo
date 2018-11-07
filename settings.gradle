@@ -4,4 +4,5 @@ include 'provider'
 include 'ribbon'
 include 'provider2'
 include 'feign'
+include 'zuul'
 
