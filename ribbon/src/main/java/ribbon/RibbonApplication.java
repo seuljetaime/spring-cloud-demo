@@ -1,9 +1,11 @@
 package ribbon;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
@@ -16,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 @EnableDiscoveryClient
 @RestController
+@EnableCircuitBreaker
 public class RibbonApplication {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -30,8 +33,15 @@ public class RibbonApplication {
     }
 
     @RequestMapping("/test")
+    @HystrixCommand(fallbackMethod = "fallback")
     public String testClient() {
         logger.info("ribbon: echo 'Hello World'");
-        return restTemplate().getForObject("http://TEST-SERVICE/test", String.class);
+        String testResult = restTemplate().getForObject("http://TEST-SERVICE/test", String.class);
+        logger.info("ribbon done");
+        return testResult;
+    }
+
+    public String fallback() {
+        return "fallback";
     }
 }

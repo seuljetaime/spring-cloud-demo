@@ -20,7 +20,8 @@ public class Provider2Application {
 
     @RequestMapping("/test")
     public String test() {
-        logger.info("provider2: echo 'Hello World'");
-        return "provider2: echo 'Hello World'";
+        throw new RuntimeException("provider2 error");
+//        logger.info("provider2: echo 'Hello World'");
+//        return "provider2: echo 'Hello World'";
     }
 }
