@@ -6,3 +6,5 @@ include 'provider2'
 include 'feign'
 include 'zuul'
 include 'zipkin-server'
+include 'hystrix'
+

@@ -8,6 +8,7 @@
 7. 启动feign， 请求`http://localhost:8088/test`，会输出 `provider: echo 'Hello World'` 或 `provider2: echo 'Hello World'`
 8. 启动zuul， 请求`http://localhost:9000/test`，会输出 `provider: echo 'Hello World'` 或 `provider2: echo 'Hello World'`
 9. 启动zipkin-server，使用默认9411端口
+10. 启动hystrix，占用端口10000，访问`http://localhost:10000/hystrix`，然后在监控中输入`http://localhost:8080/hystrix.stream`
 
 # eureka-server
 | Path             | Description  |
